@@ -169,7 +169,7 @@ dat <- obj.v5 |>
   group_by(.feature,harmony_cluster_8dims_rough)|>
   summarise(mean_feat=mean(.abundance_RNA)) |> 
   group_by(.feature) |>
-  mutate(feat_zscore=mean_feat-mean(mean_feat)/sd(mean_feat)) |> 
+  mutate(feat_zscore=(mean_feat-mean(mean_feat))/sd(mean_feat)) |> 
   mutate(feat_max_min_scaled=(mean_feat-min(mean_feat))/(max(mean_feat)-min(mean_feat))) |> 
   ungroup() |> 
   mutate(feat_zscore=ifelse(feat_zscore>2,2,feat_zscore)) |> 
