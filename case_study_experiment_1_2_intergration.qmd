@@ -63,8 +63,8 @@ options(future.globals.maxSize = 3e+09)
 
 ```{r eval=FALSE, include=FALSE}
 
-exp_2_lung <- "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_2_lung_afterQCdashboard.rds" |> read_rds()
-exp_2_bal <- "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_2_bal_afterQCdashboard.rds" |> read_rds()
+exp_2_lung <- "intermediate_data/seurat_obj_experiment_2_lung_afterQCdashboard.rds" |> read_rds()
+exp_2_bal <- "intermediate_data/seurat_obj_experiment_2_bal_afterQCdashboard.rds" |> read_rds()
 
 exp_2 <- merge(exp_2_lung, exp_2_bal,add.cell.ids = c("lung", "bal")) 
 misc_list_2 <- list(exp_2_lung@misc,exp_2_bal@misc)
@@ -72,8 +72,8 @@ exp_2_bal <- NULL
 exp_2_lung <- NULL
 gc()
 
-exp_1_lung <- "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_lung_afterQCdashboard.rds" |> read_rds()
-exp_1_bal <- "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_afterQCdashboard.rds" |> read_rds()
+exp_1_lung <- "intermediate_data/seurat_obj_experiment_1_lung_afterQCdashboard.rds" |> read_rds()
+exp_1_bal <- "intermediate_data/seurat_obj_experiment_1_bal_afterQCdashboard.rds" |> read_rds()
 
 exp_1 <- merge(exp_1_lung, exp_1_bal,add.cell.ids = c("lung", "bal")) 
 misc_list_1 <- list(exp_1_lung@misc, exp_1_bal@misc)
@@ -87,7 +87,7 @@ exp_1<- NULL
 gc()
 obj@misc <- list(misc_list_1,misc_list_2)
 obj <- JoinLayers(obj)
-write_rds(obj,"C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged.rds")
+write_rds(obj,"intermediate_data/seurat_obj_experiment_1_2_merged.rds")
 #obj <- NULL
 ```
 
@@ -105,7 +105,7 @@ write_rds(obj,"C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_da
 
 ```{r include=FALSE, eval=FALSE}
 
-obj <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged.rds")
+obj <- read_rds("intermediate_data/seurat_obj_experiment_1_2_merged.rds")
 
 meta_data <- obj[[]]
 options(Seurat.object.assay.version = "v5")
@@ -132,12 +132,12 @@ obj.v5 <- RunPCA(obj.v5)
 obj.v5 <- FindNeighbors(obj.v5, dims = 1:20)
 obj.v5 <- FindClusters(obj.v5)
 obj.v5 <- RunUMAP(obj.v5, dims = 1:20, return.model = T,reduction = "pca", reduction.name = "umap.unintegrated")
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_unintegrated.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_unintegrated.rds")
 ```
 
 ```{r fig.height=12}
-#obj.v5 <-   read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_unintegrated.rds")
-obj.v5 <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+#obj.v5 <-   read_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_unintegrated.rds")
+obj.v5 <- read_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 
 p1 <- DimPlot(obj.v5, label = T, label.size = 3, reduction = "umap.unintegrated", group.by = "orig.ident") + NoLegend()
 p2 <- DimPlot(obj.v5, label = T, label.size = 3, reduction = "umap.unintegrated", split.by = "orig.ident") 
@@ -157,11 +157,11 @@ obj.v5 <- IntegrateLayers(
 obj.v5 <- FindNeighbors(obj.v5, reduction = "integrated.rpca", dims = 1:15)
 obj.v5 <- FindClusters(obj.v5, cluster.name = "rpca_cluster")
 obj.v5 <- RunUMAP(obj.v5, reduction = "integrated.rpca", dims = 1:15, reduction.name = "umap.rpca")
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 ```
 
 ```{r fig.height=12}
-#obj.v5 <-   read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+#obj.v5 <-   read_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 
 p3 <- DimPlot(
   obj.v5,
@@ -184,7 +184,7 @@ p3/p4
 # Harmony
 
 ```{r eval=FALSE}
-#obj.v5 <-   read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+#obj.v5 <-   read_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 obj.v5 <- IntegrateLayers(
   object = obj.v5, method = HarmonyIntegration,
   orig.reduction = "pca", new.reduction = "integrated.harmony",
@@ -194,9 +194,9 @@ obj.v5 <- IntegrateLayers(
 obj.v5 <- FindNeighbors(obj.v5, reduction = "integrated.harmony", dims = 1:15 )
 obj.v5 <- FindClusters(obj.v5, cluster.name = "harmony_cluster_15dims")
 obj.v5 <- RunUMAP(obj.v5, reduction = "integrated.harmony", dims = 1:15, reduction.name = "umap.harmony_15dims")
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 ```
 
 ```{r}
@@ -234,7 +234,7 @@ p6
 obj.v5 <- FindNeighbors(obj.v5, reduction = "integrated.harmony", dims = 1:10 )
 obj.v5 <- FindClusters(obj.v5, cluster.name = "harmony_cluster_10dims")
 obj.v5 <- RunUMAP(obj.v5, reduction = "integrated.harmony", dims = 1:10, reduction.name = "umap.harmony_10dims")
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 ```
 
 ```{r}
@@ -266,11 +266,11 @@ obj.v5 <- FindNeighbors(obj.v5, reduction = "integrated.harmony", dims = 1:8 )
 obj.v5 <- FindClusters(obj.v5, cluster.name = "harmony_cluster_8dims")
 obj.v5 <- FindClusters(obj.v5, cluster.name = "harmony_cluster_8dims_rough", resolution = 0.3)
 obj.v5 <- RunUMAP(obj.v5, reduction = "integrated.harmony", dims = 1:8, reduction.name = "umap.harmony_8dims")
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 ```
 
 ```{r}
-#obj.v5 <-   read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+#obj.v5 <-   read_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 
 p5 <- DimPlot(
   obj.v5,
@@ -318,12 +318,12 @@ clus_1 <- FindConservedMarkers(obj.v5,ident.1=c(1),  logfc.threshold=0.5, min.pc
 ###
 #clus_0_1_protein <- FindConservedMarkers(obj.v5,ident.1=c(0,1,2),  logfc.threshold=0.5, min.pct = 0.1,max.cells.per.ident = 500, grouping.var = "orig.ident",assay = "protein")
 
- xlsx::write.xlsx(clus_1,"C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/clus_0_1.xlsx")
+ xlsx::write.xlsx(clus_1,"intermediate_data/intergration_1_2/12_01_2024/clus_0_1.xlsx")
  clus_1
 ```
 
 ```{r}
-clus_1 <- read.xlsx(file="C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/clus_0_1.xlsx", sheetIndex = 1) |> as_tibble() |> rename(gene=NA.)
+clus_1 <- read.xlsx(file="intermediate_data/intergration_1_2/12_01_2024/clus_0_1.xlsx", sheetIndex = 1) |> as_tibble() |> rename(gene=NA.)
  
  
 top_clus_1_neg_pos <- clus_1 |> 
@@ -369,12 +369,12 @@ DimPlot(obj.v5, cells.highlight = Cells(obj.v5)[(obj.v5$harmony_cluster_8dims_ro
 ```{r eval=FALSE}
 clus_0_2 <- FindConservedMarkers(obj.v5,ident.1=c(0,2),  logfc.threshold=0.5, min.pct = 0.1,max.cells.per.ident = 500, grouping.var = "orig.ident")
 
- xlsx::write.xlsx(clus_0_2,"C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/clus_0_2.xlsx")
+ xlsx::write.xlsx(clus_0_2,"intermediate_data/intergration_1_2/12_01_2024/clus_0_2.xlsx")
 clus_0_2
 ```
 
 ```{r}
-clus_0_2 <- read.xlsx(file="C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/clus_0_2.xlsx", sheetIndex = 1) |> as_tibble() |> rename(gene=NA.)
+clus_0_2 <- read.xlsx(file="intermediate_data/intergration_1_2/12_01_2024/clus_0_2.xlsx", sheetIndex = 1) |> as_tibble() |> rename(gene=NA.)
 
 top_clus_0_2_neg_pos <- clus_0_2 |>
   #as_tibble(rownames = "gene") |> 
@@ -420,11 +420,11 @@ DimPlot(obj.v5, cells.highlight = Cells(obj.v5)[(obj.v5$harmony_cluster_8dims_ro
 ```{r eval=FALSE}
 clus_3_4<- FindConservedMarkers(obj.v5,ident.1=c(3,4),  logfc.threshold=0.5, min.pct = 0.1,max.cells.per.ident = 500, grouping.var = "orig.ident")
 
-xlsx::write.xlsx(clus_3_4,"C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/clus_3_4.xlsx")
+xlsx::write.xlsx(clus_3_4,"intermediate_data/intergration_1_2/12_01_2024/clus_3_4.xlsx")
 ```
 
 ```{r}
-clus_3_4 <- read.xlsx(file="C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/clus_3_4.xlsx", sheetIndex = 1) |> as_tibble() |> rename(gene=NA.)
+clus_3_4 <- read.xlsx(file="intermediate_data/intergration_1_2/12_01_2024/clus_3_4.xlsx", sheetIndex = 1) |> as_tibble() |> rename(gene=NA.)
 
 top_5_clus_3_4_neg_pos <- clus_3_4 |>
  # as_tibble(rownames = "gene") |> 
@@ -468,20 +468,20 @@ Idents(obj.v5) <- "harmony_cluster_8dims_rough"
 all_harmony_clusters_rough <- FindAllMarkers(obj.v5,min.pct = 0.3,max.cells.per.ident = 500, logfc.threshold = 0.5, )
 all_harmony_clusters_rough |> group_by(cluster) |> slice_min(p_val_adj,n = 10)
 
-xlsx::write.xlsx(all_harmony_clusters_rough,"C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx")
+xlsx::write.xlsx(all_harmony_clusters_rough,"intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx")
 
-write_rds(all_harmony_clusters_rough, "C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx")
+write_rds(all_harmony_clusters_rough, "intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx")
 ```
 
 ```{r}
 
-all_harmony_clusters_rough <- read_rds( "C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx")
+all_harmony_clusters_rough <- read_rds( "intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx")
 options(java.parameters = "-Xmx8000m")
 
 
 
 # all_harmony_clusters_rough <- read.xlsx(
-#   file="C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx",
+#   file="intermediate_data/intergration_1_2/12_01_2024/all_harmony_clusters_rough.xlsx",
 #   sheetIndex = 1)
 
 top_5_clus_genes <- all_harmony_clusters_rough |> filter(avg_log2FC>0) |> group_by(cluster) |> slice_min(p_val_adj,n = 5) |> pull(gene) |> unique() |>  as.factor()
@@ -523,6 +523,6 @@ obj.v5 <- SCTransform(obj.v5) %>%
 ## ScTransform
 
 ```{r}
-obj.v5 <- readRDS("C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated_sct_1.rds")
+obj.v5 <- readRDS("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated_sct_1.rds")
 DimPlot(obj.v5, group.by = "orig.ident")
 ```

@@ -23,9 +23,9 @@ libraries("Seurat", "tidyverse", "here", "janitor", "forcats","tidyseurat","Matr
 set.seed(2023)
 #set up file paths
 file_path <- vector("list") 
-file_path$output <- ".\\output\\" 
-file_path$intermediate_data<- ".\\intermediate_data\\" 
-file_path$raw_data <- "C:\\Users\\danne\\raw_data\\machiels_lab\\viral\\2023-10-02_output_lung\\Output_Lung\\BD-Analysis-BMachiels_Expression_Data_Unfiltered.st.gz"
+file_path$output <- "./output/" 
+file_path$intermediate_data<- "./intermediate_data/" 
+file_path$raw_data <- "../../raw_data/machiels_lab/viral\\2023-10-02_output_lung\\Output_Lung\\BD-Analysis-BMachiels_Expression_Data_Unfiltered.st.gz"
 ```
 
 ```{r}
@@ -245,8 +245,8 @@ experiment_1_feature_tbl  |> ggplot(aes(nFeature_RNA, seurat_clusters, fill=orig
 ```{r}
 #| fig-width: 15
 #| fig-height: 6
-lung_sample_tag_calls <- read_csv("C:/Users/danne/raw_data/machiels_lab/viral/2023-10-02_output_lung/Output_Lung/BD-Analysis-BMachiels_Sample_Tag_Calls.csv", skip = 7) |> mutate(Cell_Index=paste0("lung_",Cell_Index))
-bal_sample_tag_calls <- read_csv("C:\\Users\\danne\\raw_data\\machiels_lab\\viral\\2023-10-02_output_bal\\Output_BAL\\BD-Analysis-BMachiels_Sample_Tag_Calls.csv", skip = 7)|> mutate(Cell_Index=paste0("bal_",Cell_Index))
+lung_sample_tag_calls <- read_csv("../../raw_data/machiels_lab/viral/2023-10-02_output_lung/Output_Lung/BD-Analysis-BMachiels_Sample_Tag_Calls.csv", skip = 7) |> mutate(Cell_Index=paste0("lung_",Cell_Index))
+bal_sample_tag_calls <- read_csv("../../raw_data/machiels_lab/viral\\2023-10-02_output_bal\\Output_BAL\\BD-Analysis-BMachiels_Sample_Tag_Calls.csv", skip = 7)|> mutate(Cell_Index=paste0("bal_",Cell_Index))
 
 (lung_sample_tag_calls |> ggplot(aes(Sample_Name)) + geom_bar()+theme(axis.text.x = element_text(angle = 90))+ggtitle("lung sample tags"))+
 (bal_sample_tag_calls |> ggplot(aes(Sample_Name)) + geom_bar()+theme(axis.text.x = element_text(angle = 90))+ggtitle("bal sample tags"))

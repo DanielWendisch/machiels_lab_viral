@@ -1,6 +1,6 @@
 
 easypackages::libraries("Seurat", "tidyverse", "tidyseurat")
-obj.v5 <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_central.rds")
+obj.v5 <- read_rds("intermediate_data/seurat_obj_central.rds")
 DefaultAssay(obj.v5) <- "RNA"
 
 
@@ -85,4 +85,4 @@ obj.v5$day_mock_sample_type_cond <-  new_meta_data |>  pull(day_mock_sample_type
 obj.v5$day_sample_type_cond_ms4a3_pos_gabbr2 <- pull(new_meta_data, day_sample_type_cond_ms4a3_pos_gabbr2)
 obj.v5$sample_tag_ms4a3_pos_gabbr2 <- pull(new_meta_data,sample_tag_ms4a3_pos_gabbr2)
 
-obj.v5 |>  write_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_central.rds")
+obj.v5 |>  write_rds("intermediate_data/seurat_obj_central.rds")

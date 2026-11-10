@@ -1,0 +1,12 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.quarto/
+
+# generated / rendered output
+*.html
+*_files/
+rsconnect/
+output/
+intermediate_data/

@@ -24,10 +24,10 @@ libraries("Seurat", "tidyverse", "tidyseurat","ggExtra", "viridis", "ggridges","
 # this means also those wells that the rhapsody pipeline does not call as containing a cell
 
 
-unfiltered_csv_paths <- c("..\\..\\raw_data\\machiels_lab\\viral\\output_lung_d8\\BD-Analysis-BMachiels-Lung_DBEC_MolsPerCell_Unfiltered.csv.gz",
-                          "..\\..\\raw_data\\machiels_lab\\viral\\output_bal_d8\\BD-Analysis-BMachiels-BAL_DBEC_MolsPerCell_Unfiltered.csv.gz",
-                          "..\\..\\raw_data\\machiels_lab\\viral\\2023-10-02_output_lung\\Output_Lung\\BD-Analysis-BMachiels_DBEC_MolsPerCell_Unfiltered.csv.gz",
-                          "..\\..\\raw_data\\machiels_lab\\viral\\2023-10-02_output_bal\\Output_BAL\\BD-Analysis-BMachiels_DBEC_MolsPerCell_Unfiltered.csv.gz")
+unfiltered_csv_paths <- c("../../raw_data/machiels_lab/viral/output_lung_d8/BD-Analysis-BMachiels-Lung_DBEC_MolsPerCell_Unfiltered.csv.gz",
+                          "../../raw_data/machiels_lab/viral/output_bal_d8/BD-Analysis-BMachiels-BAL_DBEC_MolsPerCell_Unfiltered.csv.gz",
+                          "../../raw_data/machiels_lab/viral/2023-10-02_output_lung/Output_Lung/BD-Analysis-BMachiels_DBEC_MolsPerCell_Unfiltered.csv.gz",
+                          "../../raw_data/machiels_lab/viral/2023-10-02_output_bal/Output_BAL/BD-Analysis-BMachiels_DBEC_MolsPerCell_Unfiltered.csv.gz")
 
 exp_name <- c("lung_d8","bal_d8",
               "lung_d60", "bal_d60")
@@ -45,7 +45,7 @@ for (i in seq_along(unfiltered_csv_paths)) {
   #rename the proteins
   colnames(counts_fread) <- c("cell_index","Siglecf_AbSeq","H2_ia_ie_AbSeq","Cd274_AbSeq","Cd11c","Ly_6g_AbSeq","Ly_6a_AbSeq")
   #sqve unfiltered_prot_counts  as intermediate data
-  write_csv(counts_fread,paste0(".\\intermediate_data\\",exp_name[i],"unfiltered_prot_counts_fread.csv") )
+  write_csv(counts_fread,paste0("./intermediate_data/",exp_name[i],"unfiltered_prot_counts_fread.csv") )
 
 }
 
@@ -82,7 +82,7 @@ dataset_name <- c(
   "lung_d60",
   "lung_d8")
 
-unfiltered_prot_counts <- unfiltered_prot_counts |> map_vec(\(x) paste0(".\\intermediate_data\\", x))
+unfiltered_prot_counts <- unfiltered_prot_counts |> map_vec(\(x) paste0("./intermediate_data/", x))
 
 plot_list <- list()
 for (i in seq_along(unfiltered_prot_counts)) {
@@ -187,12 +187,12 @@ for (i in seq_along(unfiltered_prot_counts)) {
     use.isotype.control = F
   )
   
-  #write_rds(cells.dsb.norm,paste0(".\\intermediate_data\\dsb_matrix_",dataset_name[i],".rds"))
+  #write_rds(cells.dsb.norm,paste0("./intermediate_data/dsb_matrix_",dataset_name[i],".rds"))
   
 }
 
 
-# write_rds(plot_list,paste0(".\\intermediate_data\\protein_reads_QC_plot_list.rds"))
+# write_rds(plot_list,paste0("./intermediate_data/protein_reads_QC_plot_list.rds"))
 
 
 ```
@@ -208,7 +208,7 @@ For FACS stainings it is nowadays commonplace to include staining controls such 
 ## d8 bal
 
 ```{r fig.height=7, fig.width=12, message=FALSE, warning=FALSE,echo=FALSE}
-plot_list <- read_rds(paste0(".\\intermediate_data\\protein_reads_QC_plot_list.rds"))
+plot_list <- read_rds(paste0("./intermediate_data/protein_reads_QC_plot_list.rds"))
 ggpubr::ggarrange(plotlist = plot_list[[2]])
 ```
 
@@ -225,7 +225,7 @@ This data set has significant background as can be seen in the relativly steep s
 ## d60 bal
 
 ```{r fig.height=7, fig.width=12, message=FALSE, warning=FALSE,echo=FALSE}
-plot_list <- read_rds(paste0(".\\intermediate_data\\protein_reads_QC_plot_list.rds"))
+plot_list <- read_rds(paste0("./intermediate_data/protein_reads_QC_plot_list.rds"))
 
 ggpubr::ggarrange(plotlist = plot_list[[1]])
 ```
@@ -241,7 +241,7 @@ ggpubr::ggarrange(plotlist = plot_list[[3]])
 
 ```{r  message=FALSE, warning=FALSE,echo=FALSE}
 
-path_1 <- "..\\..\\R_projects\\machiels_lab_viral-main\\intermediate_data\\seurat_obj_experiment_1_2_integrated.rds"
+path_1 <- "intermediate_data/seurat_obj_experiment_1_2_integrated.rds"
 obj.v5 <- read_rds(path_1)
 
 #add filtering Data

@@ -13,8 +13,8 @@ easypackages::libraries("Seurat","tidyverse", "SeuratWrappers","tidyseurat", "gg
 ```
 
 ```{r}
-path <- "C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/seurat_obj_viral.experiment.1.rds"
-path <- "D:\\danne\\intermediate_data\\seurat_obj_viral.experiment.1.rds"
+path <- "intermediate_data/seurat_obj_viral.experiment.1.rds"
+path <- "intermediate_data/seurat_obj_viral.experiment.1.rds"
 exp <- readRDS(path) #directly from counts_to_seurat.rds
 
 ```
@@ -47,20 +47,20 @@ exp |> group_by(orig.ident) |> summarise(sum_RNA_counts=sum(nCount_RNA)) |> ggpl
 ## with filtering
 
 ```{r eval=FALSE, include=FALSE}
-lung <- read_rds("C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/seurat_obj_experiment_1_combined_lung_raw_dbec_cleaned.rds") 
-bal <- read_rds("C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/seurat_obj_experiment_1_combined_bal_raw_dbec_cleaned.rds")
+lung <- read_rds("intermediate_data/seurat_obj_experiment_1_combined_lung_raw_dbec_cleaned.rds") 
+bal <- read_rds("intermediate_data/seurat_obj_experiment_1_combined_bal_raw_dbec_cleaned.rds")
 
 gc()
 exp <- merge(bal, lung, add.cell.ids = c("bal", "lung")) 
 bal <- NULL
 lung <- NULL
-write_rds(exp, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_merged_raw.rds")
+write_rds(exp, "intermediate_data/seurat_obj_experiment_1_merged_raw.rds")
 
 ```
 
 ```{r}
-path <- "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_merged_raw.rds"
-path <- "D:\\danne\\intermediate_data\\seurat_obj_experiment_1_merged_raw.rds"
+path <- "intermediate_data/seurat_obj_experiment_1_merged_raw.rds"
+path <- "intermediate_data/seurat_obj_experiment_1_merged_raw.rds"
 
 exp <- read_rds(path)
 
@@ -134,7 +134,7 @@ exp <- RunPCA(exp)
 exp <- FindNeighbors(exp, dims = 1:30, reduction = "pca")
 exp <- FindClusters(exp, resolution = 2, cluster.name = "unintegrated_clusters")
 exp <- RunUMAP(exp, dims = 1:30, reduction = "pca", reduction.name = "umap.unintegrated")
-write_rds(exp, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_merged_cleaned_2.rds")
+write_rds(exp, "intermediate_data/seurat_obj_experiment_1_merged_cleaned_2.rds")
 ```
 
 ```{r}
@@ -142,7 +142,7 @@ DimPlot(exp, reduction = "umap.unintegrated", group.by = "orig.ident", split.by 
 ```
 
 ```{r }
-#exp <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_merged_cleaned_2.rds"")
+#exp <- read_rds("intermediate_data/seurat_obj_experiment_1_merged_cleaned_2.rds"")
 # visualize by batch and cell type annotation
 # cell type annotations were previously added by Azimuth
 DimPlot(exp, reduction = "umap.unintegrated", group.by = c("orig.ident", "seurat_clusters"))
@@ -172,7 +172,7 @@ exp <- FindNeighbors(exp, reduction = "integrated.rpca", dims = 1:5)
 exp <- FindClusters(exp, resolution = 1, cluster.name = "rcpa_clusters")
 
 exp <- RunUMAP(exp, reduction = "integrated.rpca", dims = 1:5, reduction.name = "umap.rcpa")
-write_rds(exp, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_merged_cleaned_3.rds")
+write_rds(exp, "intermediate_data/seurat_obj_experiment_1_merged_cleaned_3.rds")
 
 
 ```
@@ -222,23 +222,23 @@ exp |>
 exp <- JoinLayers(exp)
 set.seed(2023)
 markers_roc <- FindAllMarkers(exp,test.use = "roc",max.cells.per.ident = 300 )
-write_csv(markers_roc, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\markers_experiment_1_merged_9rcpa_clusters_roc_300_cells.csv")
+write_csv(markers_roc, "intermediate_data/markers_experiment_1_merged_9rcpa_clusters_roc_300_cells.csv")
 
 set.seed(2024)
 markers_roc_2 <- FindAllMarkers(exp,test.use = "roc",max.cells.per.ident = 300 )
-write_csv(markers_roc, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\markers_2_experiment_1_merged_9rcpa_clusters_roc_300_cells.csv")
+write_csv(markers_roc, "intermediate_data/markers_2_experiment_1_merged_9rcpa_clusters_roc_300_cells.csv")
 set.seed(2023)
 markers_roc |> slice_max(myAUC,by =cluster,n=10 )
 
 markers_roc_2 <- FindAllMarkers(exp,test.use = "roc",max.cells.per.ident = 300, )
-write_csv(markers_roc, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\markers_2_experiment_1_merged_9rcpa_clusters_roc_300_cells.csv")
+write_csv(markers_roc, "intermediate_data/markers_2_experiment_1_merged_9rcpa_clusters_roc_300_cells.csv")
 
 bal_alv_mac <- subset(exp,orig.ident=="viral.experiment.1__bal" & seurat_clusters %in% c(0,1,2))
 bal_alv_mac <- subset(exp,orig.ident=="viral.experiment.1__bal" & seurat_clusters %in% c(0,1,2))
-write_rds(bal_alv_mac, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
+write_rds(bal_alv_mac, "intermediate_data/seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
 
 lung_alv_mac <- subset(exp,orig.ident=="viral.experiment.1__lung" & seurat_clusters %in% c(0,1,2))
-write_rds(lung_alv_mac, "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_lung_alv_macs_with_merged_groups.rds")
+write_rds(lung_alv_mac, "intermediate_data/seurat_obj_experiment_1_lung_alv_macs_with_merged_groups.rds")
 
 bal_alv_mac <- bal
 

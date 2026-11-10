@@ -2,9 +2,9 @@
 set.seed(2023)
 #set up file paths
 file_path <- vector("list") 
-file_path$output <- ".\\output\\" 
-file_path$intermediate_data<- ".\\intermediate_data\\" 
-#file_path$raw_data <- "C:\\Users\\danne\\raw_data\\machiels_lab\\viral\\2023-10-02_output_bal\\Output_bal\\BD-Analysis-BMachiels_Expression_Data_Unfiltered.st.gz"
+file_path$output <- "./output/" 
+file_path$intermediate_data<- "./intermediate_data/" 
+#file_path$raw_data <- "../../raw_data/machiels_lab/viral\\2023-10-02_output_bal\\Output_bal\\BD-Analysis-BMachiels_Expression_Data_Unfiltered.st.gz"
 
 obj_identifier <- "experiment_2_bal"
 file_name_obj <- paste0("seurat_obj_", obj_identifier, "_workflowed.rds")

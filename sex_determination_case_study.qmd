@@ -10,9 +10,9 @@ library(tidyverse)
 library(org.Mm.eg.db)
 
 file_path <- vector("list") 
-file_path$output <- ".\\output\\" 
-file_path$intermediate_data<- ".\\intermediate_data\\" 
-file_path$raw_data <- "C:\\Users\\danne\\raw_data\\machiels_lab\\viral\\2023-10-02_output_lung\\Output_Lung\\BD-Analysis-BMachiels_Expression_Data_Unfiltered.st.gz"
+file_path$output <- "./output/" 
+file_path$intermediate_data<- "./intermediate_data/" 
+file_path$raw_data <- "../../raw_data/machiels_lab/viral\\2023-10-02_output_lung\\Output_Lung\\BD-Analysis-BMachiels_Expression_Data_Unfiltered.st.gz"
 
 ```
 

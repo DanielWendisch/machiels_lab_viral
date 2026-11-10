@@ -15,8 +15,8 @@ library(Seurat)
 library(tidyseurat)
 library(tidyverse)
 
-obj.v5 <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_central.rds" )
-#obj.v5 <-   read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
+obj.v5 <- read_rds("intermediate_data/seurat_obj_central.rds" )
+#obj.v5 <-   read_rds("intermediate_data/seurat_obj_experiment_1_2_merged_v5_split_integrated.rds")
 
 obj.v5@misc <-  read_rds("intermediate_data/exp1_exp2_misc_list.rds") #can be deleted later
         

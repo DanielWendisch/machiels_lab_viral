@@ -93,9 +93,9 @@ make_idents_counts <- function(
 ```
 
 ```{r}
-path <- "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds"
-path <- "D:\\danne\\intermediate_data\\seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds"
-path <- "C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/seurat_obj_experiment_1_bal_afterQCdashboard.rds"
+path <- "intermediate_data/seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds"
+path <- "intermediate_data/seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds"
+path <- "intermediate_data/seurat_obj_experiment_1_bal_afterQCdashboard.rds"
 bal_alv_mac <- read_rds(path)
 ```
 

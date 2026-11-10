@@ -18,7 +18,7 @@ easypackages::libraries("viridis","patchwork", "Seurat", "tidyverse","tidyseurat
 library(googlesheets4)
 library(stringr) 
 library(readxl)
-obj.v5 <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_central.rds")
+obj.v5 <- read_rds("intermediate_data/seurat_obj_central.rds")
 DefaultAssay(obj.v5) <- "RNA"
 
 Idents(object = obj.v5) <- "harmony_cluster_8dims_rough"
@@ -220,7 +220,7 @@ cluster_markers_plot+coord_flip()
 ```{r include=FALSE, eval=FALSE}
 ########### adds module scores to obj. and stores it seprately
 
-literature_table <- read_excel("C:/Users/danne/raw_data/machiels_lab/viral/2024-03-01_literature_genesets.xlsx")
+literature_table <- read_excel("../../raw_data/machiels_lab/viral/2024-03-01_literature_genesets.xlsx")
 
 
 literature_genesets <- literature_table |> mutate(Geneset=str_remove_all(Geneset, " ")) |> 
@@ -267,14 +267,14 @@ wide_mod_score_tbl <-  long_mod_score_tbl |> pivot_wider(names_from = module_sco
 #remove mod scores with numbers
 obj.v5 <- obj.v5 |> select(!any_of(mod_score_names_w_numbers))
 just_mod_scores <- select(wide_mod_score_tbl,-.cell,-harmony_cluster_8dims_rough)
-long_mod_score_tbl |> write_rds("C:/Users/danne/raw_data/machiels_lab/viral/long_mod_score_tbl.rds")
+long_mod_score_tbl |> write_rds("../../raw_data/machiels_lab/viral/long_mod_score_tbl.rds")
 ```
 
 ```{r message=FALSE, warning=FALSE}
 #| fig-asp: 2
 
 #change names pf module score meta data columns
-long_mod_score_tbl <-  read_rds("C:/Users/danne/raw_data/machiels_lab/viral/long_mod_score_tbl.rds")
+long_mod_score_tbl <-  read_rds("../../raw_data/machiels_lab/viral/long_mod_score_tbl.rds")
 wide_mod_score_tbl <-  long_mod_score_tbl |> pivot_wider(names_from = module_scores)
 just_mod_scores <- select(wide_mod_score_tbl,-.cell,-harmony_cluster_8dims_rough)
 

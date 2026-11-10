@@ -17,7 +17,7 @@ easypackages::libraries("viridis","patchwork", "Seurat", "tidyverse","tidyseurat
 ```
 
 ```{r}
-obj.v5 <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_central.rds" )
+obj.v5 <- read_rds("intermediate_data/seurat_obj_central.rds" )
 ```
 
 ```{r}

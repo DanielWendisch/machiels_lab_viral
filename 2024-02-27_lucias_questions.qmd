@@ -13,7 +13,7 @@ execute:
 
 
 ```{r message=FALSE}
-seurat_obj_central <- readRDS("C:/Users/danne/R_projects/machiels_lab_viral/intermediate_data/seurat_obj_central.rds")
+seurat_obj_central <- readRDS("intermediate_data/seurat_obj_central.rds")
 easypackages::libraries("Seurat", "tidyverse", "tidyseurat"#,"ggExtra", "viridis", "ggridges","patchwork"
 )
 library(xlsx)

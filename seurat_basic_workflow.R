@@ -3,9 +3,9 @@ libraries("tidyverse", "Seurat", "tidyseurat", "tibble")
 
 ####set up file paths
 file_path <- vector("list") 
-file_path$output <- ".\\output\\" 
-file_path$intermediate_data<- ".\\intermediate_data\\" 
-file_path$raw_data_root <- "..\\..\\raw_data\\machiels_lab\\viral\\"
+file_path$output <- "./output/" 
+file_path$intermediate_data<- "./intermediate_data/" 
+file_path$raw_data_root <- "../../raw_data/machiels_lab/viral/"
 
 #for read: seurat object path
 #for write processed seurt object path

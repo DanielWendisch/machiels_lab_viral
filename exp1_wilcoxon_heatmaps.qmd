@@ -23,7 +23,7 @@ save_excel_bool <- FALSE
 
 ```{r, load data, echo=FALSE, message=FALSE, warning=FALSE}
 
-bal_alv_mac <- read_rds( "intermediate_data\\seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
+bal_alv_mac <- read_rds( "intermediate_data/seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
 bal_alv_mac$virus <- tibble(sampletag_name=bal_alv_mac |> pull(sampletag_name)) |> separate(sampletag_name,into = c("virus")) |> pull("virus")
 
 ms4a3_neg <- bal_alv_mac|> filter(sampletag_Ms4a3=="Ms4a3_neg")
@@ -154,33 +154,33 @@ marker_list_histogram_plots <- function(marker_list, seurat_object) {
 ```
 
 ```{r, ms4a3_neg_markers, echo=FALSE, message=FALSE}
-if ((!file.exists("intermediate_data\\exp_1_bal_ms4a3_neg_markers.rds" )| recalculate)) {
+if ((!file.exists("intermediate_data/exp_1_bal_ms4a3_neg_markers.rds" )| recalculate)) {
   Idents(ms4a3_neg) <- "sampletag_name"
 ms4a3_neg_markers <-
   FindAllMarkers(ms4a3_neg, max.cells.per.ident = 300, logfc.threshold = 0.5)
 write_rds(ms4a3_neg_markers,
-          "intermediate_data\\exp_1_bal_ms4a3_neg_markers.rds")
+          "intermediate_data/exp_1_bal_ms4a3_neg_markers.rds")
   
   
 } else ms4a3_neg_markers <-
-  read_rds("intermediate_data\\exp_1_bal_ms4a3_neg_markers.rds")
+  read_rds("intermediate_data/exp_1_bal_ms4a3_neg_markers.rds")
 ```
 
 ```{r ,ms4a3_pos_markers, echo=FALSE, message=FALSE}
 
-if ((!file.exists("intermediate_data\\exp_1_bal_ms4a3_pos_markers.rds")| recalculate)) {
+if ((!file.exists("intermediate_data/exp_1_bal_ms4a3_pos_markers.rds")| recalculate)) {
   Idents(ms4a3_pos) <- "sampletag_name"
 ms4a3_pos_markers <-
   FindAllMarkers(ms4a3_pos, max.cells.per.ident = 300, logfc.threshold = 0.5)
 write_rds(ms4a3_pos_markers,
-          "intermediate_data\\exp_1_bal_ms4a3_pos_markers.rds")
-} else ms4a3_pos_markers <- read_rds("intermediate_data\\exp_1_bal_ms4a3_pos_markers.rds")
+          "intermediate_data/exp_1_bal_ms4a3_pos_markers.rds")
+} else ms4a3_pos_markers <- read_rds("intermediate_data/exp_1_bal_ms4a3_pos_markers.rds")
 
 ```
 
 ```{r ,markers_pos_viruses_vs_mock, echo=FALSE, message=FALSE}
 
-if ((!file.exists("intermediate_data\\exp_1_bal_markers_pos_viruses_vs_mock.rds")| recalculate)) {
+if ((!file.exists("intermediate_data/exp_1_bal_markers_pos_viruses_vs_mock.rds")| recalculate)) {
   
   markers_pos_viruses_vs_mock <- tibble()
   groupings <- unique(ms4a3_pos$sampletag_name)[1:4]
@@ -200,9 +200,9 @@ if ((!file.exists("intermediate_data\\exp_1_bal_markers_pos_viruses_vs_mock.rds"
   }
       write_rds(
       markers_pos_viruses_vs_mock,
-      "intermediate_data\\exp_1_bal_markers_pos_viruses_vs_mock.rds")
+      "intermediate_data/exp_1_bal_markers_pos_viruses_vs_mock.rds")
       
-}else markers_pos_viruses_vs_mock <- read_rds("intermediate_data\\exp_1_bal_markers_pos_viruses_vs_mock.rds")
+}else markers_pos_viruses_vs_mock <- read_rds("intermediate_data/exp_1_bal_markers_pos_viruses_vs_mock.rds")
 
 ```
 
@@ -240,7 +240,7 @@ if ((!file.exists("intermediate_data//exp_1_bal_markers_neg_viruses_vs_mock.rds"
 ```{r include=FALSE, eval=save_excel_bool}
 library(xlsx)
 
-file <- ".\\output\\sheets\\exp1_wilcoxon_heatmaps\\exp_1_d60_cell-wise_wilcoxon_downsampled_.xlsx"
+file <- "./output/sheets/exp1_wilcoxon_heatmaps/exp_1_d60_cell-wise_wilcoxon_downsampled_.xlsx"
 write.xlsx(ms4a3_neg_markers, file, sheetName = "ms4a3_neg_markers", 
   col.names = TRUE, row.names = TRUE, append = TRUE)
 

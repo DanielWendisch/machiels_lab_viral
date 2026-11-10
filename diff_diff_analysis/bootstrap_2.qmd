@@ -8,7 +8,7 @@ editor: visual
 
 ```{r}
 easypackages::libraries("modelr", "tidyverse","Seurat", "tidyseurat", "ggridges", "ggpointdensity", "magrittr", "MASS", "broom")
-bal_alv_mac <- read_rds( "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
+bal_alv_mac <- read_rds( "intermediate_data/seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
 bal_alv_mac$virus <- tibble(sampletag_name=bal_alv_mac |> pull(sampletag_name)) |> separate(sampletag_name,into = c("virus")) |> pull("virus")
 ```
 
@@ -215,7 +215,7 @@ mean_tbl|> #filter(gene=="Spp1") |>
                  mean_diff_b=b_x-b_y ) |>
         fc_plot(mean_diff_a,mean_diff_b,gene)
 
-#write_rds(mean_tbl,"C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\fc_fc_bootstrap_mean_tbl.rds")
+#write_rds(mean_tbl,"intermediate_data/fc_fc_bootstrap_mean_tbl.rds")
 
 names(mean_tbl_half) <- c("a_x","a_y","b_x","b_y","gene")
 mean_tbl_half|> #filter(gene=="Spp1") |>
@@ -225,7 +225,7 @@ mean_tbl_half|> #filter(gene=="Spp1") |>
 ```
 ```{r}
 #### functioanl
-markers_roc <- read_csv( "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_alv_mac_markers_roc.csv")
+markers_roc <- read_csv( "intermediate_data/seurat_obj_experiment_1_bal_alv_mac_markers_roc.csv")
 gene_vec <- markers_roc |> filter(power>0.2&abs(avg_log2FC)>1) |> pull(gene) |> unique() |> sort()
 
 make_per_gene_2x2_bootstrap_means <- function(gene_vec, condition) {
@@ -283,7 +283,7 @@ for (sample_group_size in c(50, 200, 700)) {
 }
 names(bootstrap_mean_ddfc_all_cond_downsample_size) <- c("a_x","a_y","b_x","b_y","gene","condition","group_size")
 bootstrap_mean_ddfc_all_cond_downsample_size_50_genes <- bootstrap_mean_ddfc_all_cond_downsample_size
-write_rds(bootstrap_mean_ddfc_all_cond_downsample_size_50_genes,"C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\bootstrap_mean_ddfc_all_cond_downsample_size_50_genes.rds")
+write_rds(bootstrap_mean_ddfc_all_cond_downsample_size_50_genes,"intermediate_data/bootstrap_mean_ddfc_all_cond_downsample_size_50_genes.rds")
 
 ```
 
@@ -315,7 +315,7 @@ for (condition in codition_vector) {
 }
 names(bootstrap_mean_ddfc_all_cond_full) <- c("a_x","a_y","b_x","b_y","gene","condition")
 bootstrap_mean_ddfc_all_cond_full
-write_rds(bootstrap_mean_ddfc_all_cond_full,"C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\bootstrap_mean_ddfc_all_cond_full.rds")
+write_rds(bootstrap_mean_ddfc_all_cond_full,"intermediate_data/bootstrap_mean_ddfc_all_cond_full.rds")
 
 
 
@@ -374,7 +374,7 @@ for (sample_group_size in c(50, 100, 200, 300, 400)) {
 
 names(bootstrap_mean_ddfc_all_cond_downsample_size) <- c("a_x","a_y","b_x","b_y","gene","condition","group_size")
 bootstrap_mean_ddfc_all_cond_downsample_size
-write_rds(bootstrap_mean_ddfc_all_cond_downsample_size,"C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\bootstrap_mean_ddfc_all_cond_downsample_size.rds")
+write_rds(bootstrap_mean_ddfc_all_cond_downsample_size,"intermediate_data/bootstrap_mean_ddfc_all_cond_downsample_size.rds")
 
 
 ```

@@ -73,7 +73,7 @@ make_idents_counts <- function(
 
 
 ```{r}
-exp <- read_rds( "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_merged_cleaned_3.rds")#from experiment_1_integration.qmd 21.12.23
+exp <- read_rds( "intermediate_data/seurat_obj_experiment_1_merged_cleaned_3.rds")#from experiment_1_integration.qmd 21.12.23
 ```
 
 ```{r}

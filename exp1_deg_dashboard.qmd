@@ -108,7 +108,7 @@ avg_log2FC<(log2_FC_tresh_x) & (power>power_tresh))  ~"highlight",
 
 ```
 ```{r, load_data, include=FALSE }
-markers_roc <- read_csv( "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_alv_mac_markers_roc.csv")
+markers_roc <- read_csv( "intermediate_data/seurat_obj_experiment_1_bal_alv_mac_markers_roc.csv")
 
 lst <- markers_roc |> group_by(comparison) |> group_split()
 ```

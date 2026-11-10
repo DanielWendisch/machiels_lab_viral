@@ -15,7 +15,7 @@ execute:
 ```{r}
 easypackages::libraries("Seurat","tidyverse","tidyseurat", "ggridges", "viridis", "ggh4x")
 
-obj.v5 <- read_rds("C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_central.rds")
+obj.v5 <- read_rds("intermediate_data/seurat_obj_central.rds")
 #helper for ggplot
 x_axis_text_90 <-  theme(axis.text.x = element_text(angle = 90))
 ```

@@ -1,5 +1,5 @@
 bootstrap_mean_tbl
-bootstrap_mean_tbl <- read_rds("intermediate_data\\bootstrap_mean_tbl.rds")
+bootstrap_mean_tbl <- read_rds("intermediate_data/bootstrap_mean_tbl.rds")
 library(forcats)
 
 bootstrap_mean_tbl <- bootstrap_mean_tbl #|> head(100)

@@ -12,7 +12,7 @@ library(directlabels)
 library(tidyverse)
 library(Seurat)
 library(tidyseurat)
-bal_alv_mac <- read_rds( "C:\\Users\\danne\\R_projects\\machiels_lab_viral\\intermediate_data\\seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
+bal_alv_mac <- read_rds( "intermediate_data/seurat_obj_experiment_1_bal_alv_macs_with_merged_groups.rds")
 
 bal_alv_mac$virus <- tibble(sampletag_name=bal_alv_mac |> pull(sampletag_name)) |> separate(sampletag_name,into = c("virus")) |> pull("virus")
 
