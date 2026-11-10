@@ -1,6 +1,6 @@
 # machiels_lab_viral
 
-Single-cell RNA-seq and surface-protein (BD Rhapsody, AbSeq) analysis of a mouse viral-infection time course, with lung and bronchoalveolar lavage (BAL) samples from two experiments. The focus is on alveolar macrophage responses (including Ms4a3-lineage tracing), differential expression, module scores, and compositional analysis. Written in R (Seurat, Quarto).
+Single-cell RNA-seq and surface-protein (BD Rhapsody) analysis of mouse viral-infection experiments, with lung and bronchoalveolar lavage (BAL) samples. The analysis focuses on alveolar macrophages (including Ms4a3-based sorting), differential expression, module scores and compositional analysis. Written in R (Seurat, Quarto).
 
 ![flowchart](viral_data_analysis_flowchart.png)
 
